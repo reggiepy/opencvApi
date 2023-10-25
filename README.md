@@ -8,7 +8,8 @@
 - [py3utils](https://github.com/reggiepy/py3utils.git)
 - *template generate
   by* [full-stack-fastapi-postgresql](https://github.com/tiangolo/full-stack-fastapi-postgresql/tree/master/%7B%7Bcookiecutter.project_slug%7D%7D)
-- fastapi
+- fastapi==0.98.0
+- sqladmin==0.15.2
 
 ## Installation
 
