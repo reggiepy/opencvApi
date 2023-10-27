@@ -150,28 +150,9 @@ LOG_CONFIG = LOGGING_CFG = {
 
 DINGDING_ACCESS_TOKEN = Config.get(
     "notify", "dingding_access_token",
-    fallback="a965644755ae0d6b951702b29ce3d75c6d007de06416e99198b38034a2c59ee0"
+    fallback=""
 )
 DINGDING_SECRET = Config.get(
     "notify", "dingding_secret",
-    fallback="SEC4d69d2b02070f1289d916a204736d477889613a22d118fe9d911bf4f3adf57cd"
+    fallback=""
 )
-# 激活码服务地址
-LICENSE_CHECK_NEED = Config.getboolean(
-    "base", "license_check_need",
-    fallback=True
-)
-LICENSE_SERVER = Config.get(
-    "base", "license_server",
-    fallback="http://101.42.33.76:6306"
-)
-LICENSE_USER = Config.get(
-    "base", "license_user",
-    fallback="root"
-)
-LICENSE_PASSWORD = Config.get(
-    "base", "license_password",
-    fallback="user@dev"
-)
-
-LICENSE_SECRET = f"{LICENSE_USER}:{LICENSE_PASSWORD}"
