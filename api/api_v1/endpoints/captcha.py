@@ -14,7 +14,10 @@ api = APIRouter()
 
 
 @api.post("/block_puzzle_captcha/")
-async def block_puzzle_captcha(bg_img: UploadFile = File(...), tp_img: UploadFile = File(...)):
+async def block_puzzle_captcha(
+        bg_img: UploadFile = File(..., description="背景图片"),
+        tp_img: UploadFile = File(..., description="缺口图片")
+):
     io_bg_img = io.BytesIO()
     io_bg_img.write(await bg_img.read())
     io_bg_img.seek(0)
