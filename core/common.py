@@ -21,7 +21,7 @@ error_logger = logging.getLogger("uvicorn.error")
 
 def init_app(api_router: APIRouter = None):
     app: fastapi.FastAPI = fastapi.FastAPI(
-        title="yongfeng manage",
+        title="opencv openapi",
         debug=True,
         docs_url=None,
         redoc_url=None,
