@@ -41,7 +41,7 @@ DEBUG = False
 
 # api config
 HOST = '0.0.0.0'
-PORT = 3323
+PORT = 3450
 # 指定api启动线程数量
 WORKERS = Config.getint("base", "workers", fallback=1)
 STATIC_DIR = Path(BASE_DIR).joinpath("static")

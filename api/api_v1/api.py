@@ -4,8 +4,9 @@
 from fastapi import Depends
 from fastapi.routing import APIRouter
 
-from api.api_v1.endpoints import websocket, ping
+from api.api_v1.endpoints import websocket, ping, captcha
 
 api_router = APIRouter(prefix="/v1")
 api_router.include_router(ping.api, prefix="/ping", tags=["ping"])
 api_router.include_router(websocket.api, prefix="/ws")
+api_router.include_router(captcha.api, prefix="/captcha")
