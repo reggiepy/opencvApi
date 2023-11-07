@@ -8,12 +8,12 @@ from fastapi import File, UploadFile, HTTPException
 from fastapi.routing import APIRouter
 
 from common_api.captcha_api import CaptchaApi
-from schemas.captcha import BlockPuzzleCaptchaRequest
+from schemas.captcha import BlockPuzzleCaptchaRequest, BlockPuzzleCaptchaResponse
 
 api = APIRouter()
 
 
-@api.post("/block_puzzle_captcha/")
+@api.post("/block_puzzle_captcha/", response_model=BlockPuzzleCaptchaResponse)
 async def block_puzzle_captcha(
         bg_img: UploadFile = File(..., description="背景图片"),
         tp_img: UploadFile = File(..., description="缺口图片")
@@ -31,7 +31,7 @@ async def block_puzzle_captcha(
     return out
 
 
-@api.post("/block_puzzle_captcha/base64image/")
+@api.post("/block_puzzle_captcha/base64image/", response_model=BlockPuzzleCaptchaResponse)
 def block_puzzle_captcha(req: BlockPuzzleCaptchaRequest):
     io_bg_img = io.BytesIO()
     io_bg_img.write(base64.b64decode(req.img_bg))

@@ -14,6 +14,13 @@ class BlockPuzzleCaptchaRequest(BlockPuzzleCaptchaBase):
     img_tp: Optional[str] = Field(..., description="标记图片")
 
 
+class BlockPuzzleCaptchaResponse(BaseModel):
+    move_px: int = 0
+    fix_move_px: int = 0
+    fix_px: int = 0
+    match_image_base64: str = ""
+
+
 # Properties to receive on item creation
 class BlockPuzzleCaptchaCreate(BlockPuzzleCaptchaBase):
     img_bg: str

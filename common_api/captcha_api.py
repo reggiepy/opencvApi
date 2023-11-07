@@ -1,16 +1,25 @@
 # *_*coding:utf-8 *_*
 # @Author : Reggie
 # @Time : 2023/10/27 14:02
+import base64
 import io
 import random
 
 import cv2
 import numpy as np
 
+from py3utils import cv2_utils
+
 
 class CaptchaApi:
     @classmethod
     def block_puzzle_captcha(cls, bg_img, tp_img):
+        result = {
+            "move_px": 0,
+            "fix_move_px": 0,
+            "fix_px": 0,
+            "match_image_base64": b"",
+        }
         if isinstance(bg_img, str):
             bg_image = cv2.imread(bg_img)
         elif isinstance(bg_img, io.BytesIO):
@@ -57,16 +66,21 @@ class CaptchaApi:
         # 背景的高度、宽度
         bh, bw = bg_image.shape[:2]
 
-        fix = f"{random.choice(['-', '+'])}{random.uniform(0, 0.5)}"
+        fix_px = f"{random.choice(['-', '+'])}{round(random.uniform(0, 0.5), 3)}"
         if tl[0] > bw / 2:
             move_px = tl[0]
         else:
             move_px = tl[0] - tw
             move_px = tl[0]
-        fix_move_px = eval(f"{move_px}{fix}")
-        print(move_px, fix, fix_move_px)
+        fix_move_px = eval(f"{move_px}{fix_px}")
+        print(move_px, fix_px, fix_move_px)
+
+        result["move_px"] = move_px
+        result["fix_move_px"] = fix_move_px
+        result["fix_px"] = eval(fix_px)
+        result["match_image_base64"] = base64.b64encode(cv2_utils.cv2bytes(bg_image)).decode("utf-8")
         # print(cls.diffImg(bg_image, bg_image))
 
         # cv2.waitKey(0)
         # cv2.destroyAllWindows()
-        return move_px, "success", 0
+        return result, "success", 0
